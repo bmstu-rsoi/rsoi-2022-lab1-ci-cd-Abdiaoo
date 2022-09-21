@@ -29,8 +29,9 @@ jobs:
       run: |
         python src/manage.py test
     - uses: mr-smithers-excellent/docker-build-push@v5  
+    - name: Build and push a image
       with:
-        image: docker-hub-repo/image-name
+        image: abdiaoo/app-api
         registry: docker.io
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
