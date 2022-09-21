@@ -29,7 +29,7 @@ jobs:
       run: |
         python src/manage.py test
     - uses: mr-smithers-excellent/docker-build-push@v5  
-    - name: Build and push a image to dockerhub
+    - name: Build and push a image to dockerhub essaie
       with:
         image: abdiaoo/app-api
         registry: docker.io
