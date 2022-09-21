@@ -28,3 +28,9 @@ jobs:
     - name: Run Tests
       run: |
         python src/manage.py test
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: abdiaoo/app-api
+        registry: docker.io
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
