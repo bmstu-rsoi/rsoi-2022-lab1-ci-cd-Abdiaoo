@@ -1,17 +1,30 @@
-FROM python:3.10
+# pull official base image
+FROM python:3.10-alpine
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
+# set work directory
 WORKDIR /app
 
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DEBUG 0
 
+# install psycopg2
+RUN apk update \
+    && apk add --virtual build-essential gcc python3-dev musl-dev \
+    && apk add postgresql-dev \
+    && pip install psycopg2
 
-COPY requirements.txt /app/
-
+# install dependencies
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY src/ /app/
+# copy project
+COPY . .
 
+# add and run as non-root user
+RUN adduser -D myuser
+USER myuser
 
-CMD ["sh", "-c", "/usr/local/bin/python /app/manage.py runserver 0.0.0.0:$PORT" ]
+# run gunicorn
+CMD gunicorn api.wsgi:application --bind 0.0.0.0:$PORT
