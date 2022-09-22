@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-aa=^*yh_(8wal^k9q1r!_@q#b5gt74qtm5re8n77b@+i&k64f!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -81,11 +81,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-import dj_database_url
-DATABASES = { 'default': dj_database_url.config() }
-
-export DATABASE_URL="postgres://qshrmhwuksceyx:237b8526b81e9227009523ec224057576bb278849ba219cdd5bea377986feff1@ec2-3-229-165-146.compute-1.amazonaws.com:5432/d6sddrtqj7084p"
 
 
 # Password validation
