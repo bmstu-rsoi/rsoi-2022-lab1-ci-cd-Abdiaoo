@@ -28,6 +28,8 @@ jobs:
     - name: Run Tests
       run: |
         python src/manage.py test
+        python src/manage.py makemigrations
+        python src/manage.py migrate
     - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
       uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
       with:
