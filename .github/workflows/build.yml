@@ -28,13 +28,11 @@ jobs:
     - name: Run Tests
       run: |
         python src/manage.py test
-    - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-      uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
-      with:
-        email: ${{ secrets.HEROKU_EMAIL }}
+    - name: Deploy django to heroku
+      uses: nyakaz73/heroku-django-deploy@v0.68 
+      with: 
+        heroku_app_name : ${{ secrets.HEROKU_APP_NAME }}
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-        dockerfile_directory: ./
-        dockerfile_name: Dockerfile
-        docker_options: "--no-cache"
-        process_type: web
+        heroku_email_address: ${{ secrets.HEROKU_EMAIL }}
+        use_git: true
+        git_branch: main
