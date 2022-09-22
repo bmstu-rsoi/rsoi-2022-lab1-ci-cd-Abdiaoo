@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 
 COPY src/ /app/
 
-CMD ["sh","-C","python","app/manage.py","runserver","0.0.0.0:$PORT"]
+CMD ["sh", "-c", "/usr/local/bin/python /app/manage.py runserver 0.0.0.0:$PORT" ]
 
