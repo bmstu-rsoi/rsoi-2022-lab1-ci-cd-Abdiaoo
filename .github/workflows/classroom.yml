@@ -10,13 +10,33 @@ jobs:
   build:
     name: Autograding
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.9,3.10.6]
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
         with:
+          python-version: ${{ matrix.python-version }}
           fetch-depth: 0
-
+      - name: Install Dependencies
+        run: |
+          python src/manage.py test
+          python src/manage.py makemigrations
+          python src/manage.py migrate
+      - name: Build, Push and Release a Docker container to Heroku.
+        uses: gonuit/heroku-docker-deploy@v1.3.
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          dockerfile_directory: ./
+          dockerfile_name: Dockerfile
+          docker_options: "--no-cache"
+          process_type: web
       # TODO build, test and deploy project
-
       - name: Run API Tests with postman
         uses: matt-ball/newman-action@master
         with:
