@@ -2,9 +2,9 @@ name: Build CI
 
 on:
   push:
-    branches: [ "derniere" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "derniere" ]
+    branches: [ "main" ]
 
 jobs:
   build:
