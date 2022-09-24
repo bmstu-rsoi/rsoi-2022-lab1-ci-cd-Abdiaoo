@@ -286,11 +286,11 @@
 		},
 		{
 			"key": "age",
-			"value": "22"
+			"value": 22
 		},
 		{
 			"key": "personId",
-			"value": "3"
+			"value": 3
 		}
 	]
 }
