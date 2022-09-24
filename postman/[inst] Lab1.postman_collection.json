@@ -24,10 +24,7 @@
 									"    pm.collectionVariables.set(\"work\", request.work)",
 									"    pm.collectionVariables.set(\"age\", request.age)",
 									"",
-									"    const location = pm.response.headers.get(\"Location\")",
-									"    pm.expect(location).to.not.empty;",
-									"    var personId = location.split(\"/\").pop()",
-									"    pm.collectionVariables.set(\"personId\", Number(personId))",
+									"    pm.collectionVariables.set(\"personId\", Number(request.personId))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -72,11 +69,11 @@
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 									"    ",
 									"    const response = pm.response.json();",
-									"    pm.expect(response.id).to.eq(pm.collectionVariables.get('personId'))",
+									"    pm.expect(response.id).to.eq(parseInt(pm.collectionVariables.get('personId')))",
 									"    pm.expect(response.name).to.eq(pm.collectionVariables.get('name'))",
 									"    pm.expect(response.address).to.eq(pm.collectionVariables.get('address'))",
 									"    pm.expect(response.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(response.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(response.age).to.eq(parseInt(pm.collectionVariables.get('age')))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -122,14 +119,14 @@
 									"    const response = pm.response.json();",
 									"    pm.expect(response).to.be.an(\"array\")",
 									"",
-									"    const personId = pm.collectionVariables.get('personId')",
+									"    const personId = parseInt(pm.collectionVariables.get('personId'))",
 									"    const item = _.find(response, { \"id\": personId })",
 									"    pm.expect(item).to.be.not.undefined",
 									"    pm.expect(item.id).to.eq(personId)",
 									"    pm.expect(item.name).to.eq(pm.collectionVariables.get('name'))",
 									"    pm.expect(item.address).to.eq(pm.collectionVariables.get('address'))",
 									"    pm.expect(item.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(item.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(item.age).to.eq(parseInt(pm.collectionVariables.get('age')))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -169,8 +166,8 @@
 									"    pm.expect(response.id).to.eq(pm.collectionVariables.get('personId'))",
 									"    pm.expect(response.name).to.eq(request.name)",
 									"    pm.expect(response.address).to.eq(request.address)",
-									"    pm.expect(response.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(response.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(response.work).to.eq(request.work)",
+									"    pm.expect(response.age).to.eq(request.age)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -277,23 +274,23 @@
 	"variable": [
 		{
 			"key": "name",
-			"value": ""
+			"value": "abdiio"
 		},
 		{
 			"key": "address",
-			"value": ""
+			"value": "Baumanskaya"
 		},
 		{
 			"key": "work",
-			"value": ""
+			"value": "student"
 		},
 		{
 			"key": "age",
-			"value": ""
+			"value": "22"
 		},
 		{
 			"key": "personId",
-			"value": ""
+			"value": "3"
 		}
 	]
 }
