@@ -24,10 +24,7 @@
 									"    pm.collectionVariables.set(\"work\", request.work)",
 									"    pm.collectionVariables.set(\"age\", request.age)",
 									"",
-									"    const location = pm.response.headers.get(\"Location\")",
-									"    pm.expect(location).to.not.empty;",
-									"    var personId = location.split(\"/\").pop()",
-									"    pm.collectionVariables.set(\"personId\", Number(personId))",
+									"    pm.collectionVariables.set(\"personId\", Number(request(personId)))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -276,24 +273,30 @@
 	],
 	"variable": [
 		{
-			"key": "name",
-			"value": ""
+			"key":"name",
+			"value":"abdiio",
+			"type":"string"
+		}
+		,
+		{
+			"key":"address",
+			"value":"Baumanskaya",
+			"type":"string"
 		},
 		{
-			"key": "address",
-			"value": ""
+			"key":"work",
+			"value":"student",
+			"type":"string"
 		},
 		{
-			"key": "work",
-			"value": ""
+			"key":"age",
+			"value":"22",
+			"type":"string"
 		},
 		{
-			"key": "age",
-			"value": ""
-		},
-		{
-			"key": "personId",
-			"value": ""
+			"key":"personId",
+			"value":"3",
+			"type":"string"
 		}
 	]
 }
