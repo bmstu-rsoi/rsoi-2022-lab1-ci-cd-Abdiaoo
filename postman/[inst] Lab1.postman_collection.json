@@ -97,7 +97,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": 3,
+									"value": {{personId}},
 									"description": "(Required) "
 								}
 							]
@@ -290,7 +290,7 @@
 		},
 		{
 			"key": "personId",
-			"value": "22"
+			"value": "3"
 		}
 	]
 }
