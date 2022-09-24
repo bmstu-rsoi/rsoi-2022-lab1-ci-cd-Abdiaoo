@@ -274,23 +274,23 @@
 	"variable": [
 		{
 			"key": "name",
-			"value": ""
+			"value": "abdiio"
 		},
 		{
 			"key": "address",
-			"value": ""
+			"value": "Baumanskaya"
 		},
 		{
 			"key": "work",
-			"value": ""
+			"value": "student"
 		},
 		{
 			"key": "age",
-			"value": ""
+			"value": "22"
 		},
 		{
 			"key": "personId",
-			"value": ""
+			"value": "3"
 		}
 	]
 }
