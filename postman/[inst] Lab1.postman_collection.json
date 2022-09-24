@@ -122,14 +122,14 @@
 									"    const response = pm.response.json();",
 									"    pm.expect(response).to.be.an(\"array\")",
 									"",
-									"    const personId = pm.collectionVariables.get('personId')",
+									"    const personId = parseInt(pm.collectionVariables.get('personId'))",
 									"    const item = _.find(response, { \"id\": personId })",
 									"    pm.expect(item).to.be.not.undefined",
 									"    pm.expect(item.id).to.eq(personId)",
 									"    pm.expect(item.name).to.eq(pm.collectionVariables.get('name'))",
 									"    pm.expect(item.address).to.eq(pm.collectionVariables.get('address'))",
 									"    pm.expect(item.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(item.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(item.age).to.eq(parseInt(pm.collectionVariables.get('age')))",
 									"})"
 								],
 								"type": "text/javascript"
