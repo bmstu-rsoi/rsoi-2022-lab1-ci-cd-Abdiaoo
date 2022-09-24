@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "79fde698-cad9-40c9-a7ba-26519344a053",
-		"name": "[inst] Lab1",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "f1d5967c-c7da-4490-8194-132c0a854920",
+		"name": "[inst] Lab1 Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23505996"
 	},
 	"item": [
 		{
@@ -24,10 +25,7 @@
 									"    pm.collectionVariables.set(\"work\", request.work)",
 									"    pm.collectionVariables.set(\"age\", request.age)",
 									"",
-									"    const location = pm.response.headers.get(\"Location\")",
-									"    pm.expect(location).to.not.empty;",
-									"    var personId = location.split(\"/\").pop()",
-									"    pm.collectionVariables.set(\"personId\", Number(personId))",
+									"    pm.collectionVariables.set(\"personId\", Number(request.personId))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -72,11 +70,11 @@
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 									"    ",
 									"    const response = pm.response.json();",
-									"    pm.expect(response.id).to.eq(pm.collectionVariables.get('personId'))",
+									"    pm.expect(response.id).to.eq(parseInt(pm.collectionVariables.get('personId')))",
 									"    pm.expect(response.name).to.eq(pm.collectionVariables.get('name'))",
 									"    pm.expect(response.address).to.eq(pm.collectionVariables.get('address'))",
 									"    pm.expect(response.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(response.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(response.age).to.eq(parseInt(pm.collectionVariables.get('age')))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -122,14 +120,14 @@
 									"    const response = pm.response.json();",
 									"    pm.expect(response).to.be.an(\"array\")",
 									"",
-									"    const personId = pm.collectionVariables.get('personId')",
+									"    const personId = parseInt(pm.collectionVariables.get('personId'))",
 									"    const item = _.find(response, { \"id\": personId })",
 									"    pm.expect(item).to.be.not.undefined",
 									"    pm.expect(item.id).to.eq(personId)",
 									"    pm.expect(item.name).to.eq(pm.collectionVariables.get('name'))",
 									"    pm.expect(item.address).to.eq(pm.collectionVariables.get('address'))",
 									"    pm.expect(item.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(item.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(item.age).to.eq(parseInt(pm.collectionVariables.get('age')))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -166,11 +164,11 @@
 									"    ",
 									"    const request = JSON.parse(pm.request.body)",
 									"    const response = pm.response.json();",
-									"    pm.expect(response.id).to.eq(pm.collectionVariables.get('personId'))",
+									"    pm.expect(response.id).to.eq(parseInt(pm.collectionVariables.get('personId')))",
 									"    pm.expect(response.name).to.eq(request.name)",
 									"    pm.expect(response.address).to.eq(request.address)",
-									"    pm.expect(response.work).to.eq(pm.collectionVariables.get('work'))",
-									"    pm.expect(response.age).to.eq(pm.collectionVariables.get('age'))",
+									"    pm.expect(response.work).to.eq(request.work)",
+									"    pm.expect(response.age).to.eq(parseInt(request.age))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -178,7 +176,7 @@
 						}
 					],
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -187,7 +185,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}"
+							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"address\": \"{{$randomStreetAddress}}\",\n    \"work\": \"{{$randomCompanyName}}\",\n    \"age\": 31\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/persons/:id",
@@ -276,24 +274,33 @@
 	],
 	"variable": [
 		{
+			"key": "baseUrl",
+			"value": "https://app-lab1.herokuapp.com/"
+		},
+		{
 			"key": "name",
-			"value": ""
-		},
-		{
-			"key": "address",
-			"value": ""
-		},
-		{
-			"key": "work",
-			"value": ""
+			"value": "abdi",
+			"type": "string"
 		},
 		{
 			"key": "age",
-			"value": ""
+			"value": "22",
+			"type": "string"
+		},
+		{
+			"key": "address",
+			"value": "Baumanskaya",
+			"type": "string"
+		},
+		{
+			"key": "work",
+			"value": "student",
+			"type": "string"
 		},
 		{
 			"key": "personId",
-			"value": ""
+			"value": "5",
+			"type": "string"
 		}
 	]
 }
