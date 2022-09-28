@@ -40,3 +40,11 @@ jobs:
         dockerfile_name: Dockerfile
         docker_options: "--no-cache"
         process_type: web
+        
+    - name: Run API Tests
+      uses: matt-ball/newman-action@master
+      with:
+        collection: postman/[inst] Lab1.postman_collection.json
+        environment: postman/[inst][heroku] Lab1.postman_environment.json
+        delayRequest: 100
+        reporters: '[ "cli" ]'
