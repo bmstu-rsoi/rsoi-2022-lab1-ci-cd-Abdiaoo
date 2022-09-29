@@ -22,7 +22,7 @@ def listPersons(request,format=None):
             response['Location']='/api/v1/persons/{personId}'.format(personId=d.id)
             return response
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-@api_view(['GET','PUT','DELETE'])
+@api_view(['GET','PATCH','DELETE'])
 def aSpecificPersons(request,id,format=None):
     try:
         person=Person.objects.get(id=id)
@@ -31,7 +31,7 @@ def aSpecificPersons(request,id,format=None):
     if request.method=='GET':
         serializer=PersonsSerializer(person)
         return Response(serializer.data,status=status.HTTP_200_OK)
-    if request.method=='PUT':
+    if request.method=='PATCH':
         serializer=PersonsSerializer(person,data=request.data)
         if serializer.is_valid():
             serializer.save()
