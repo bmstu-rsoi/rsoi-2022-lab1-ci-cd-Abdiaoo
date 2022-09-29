@@ -17,7 +17,7 @@ def listPersons(request,format=None):
         serializer=PersonsSerializer(data=request.data)
         if serializer.is_valid():
             obj=serializer.save()
-            response=Response(status=status.HTTP_201_CREATED)
+            response=Response(serializer.data,status=status.HTTP_201_CREATED)
             response['Location']=obj.get_absolute_url()
             return response
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
