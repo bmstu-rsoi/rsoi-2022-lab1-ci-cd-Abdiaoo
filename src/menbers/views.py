@@ -17,7 +17,6 @@ def listPersons(request,format=None):
         serializer=PersonsSerializer(data=request.data)
         if serializer.is_valid():
             d=serializer.save()
-            print(d.id)
             response=Response(status=status.HTTP_201_CREATED)
             response['Location']='/api/v1/persons/{personId}'.format(personId=d.id)
             return response
@@ -32,7 +31,7 @@ def aSpecificPersons(request,id,format=None):
         serializer=PersonsSerializer(person)
         return Response(serializer.data,status=status.HTTP_200_OK)
     if request.method=='PATCH':
-        serializer=PersonsSerializer(person,data=request.data)
+        serializer=PersonsSerializer(person,data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
