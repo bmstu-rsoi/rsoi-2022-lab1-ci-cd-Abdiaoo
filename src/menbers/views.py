@@ -16,10 +16,8 @@ def listPersons(request,format=None):
     if request.method=='POST':
         serializer=PersonsSerializer(data=request.data)
         if serializer.is_valid():
-            obj=serializer.save()
-            response=Response(serializer.data,status=status.HTTP_201_CREATED)
-            response['Location']=obj.get_absolute_url()
-            return response
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 @api_view(['GET','PUT','DELETE'])
 def aSpecificPersons(request,id,format=None):
